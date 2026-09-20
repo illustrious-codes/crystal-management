@@ -1,0 +1,120 @@
+/*
+  Crystal Management S.A. — Approach ("why us") section
+  Pairs the chartered tanker photo with the three value points from the
+  brief. Light surface: this sits between the dark hero above and the
+  dark footer below, so the page alternates light/dark/light/dark.
+*/
+
+.approach {
+  --color-navy: #0b3556;
+  --color-sky: #1e94c9;
+  --color-sky-soft: #22a7e0;
+  --color-text-secondary: #4a6b87;
+  --color-line: rgba(11, 53, 86, 0.1);
+
+  background: #ffffff;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* ---------- Image ---------- */
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* ---------- Content ---------- */
+
+.heading {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 500;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  line-height: 1.2;
+  color: var(--color-navy);
+  margin: 0 0 2.25rem;
+  max-width: 20ch;
+}
+
+.pointList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.point {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.point:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(30, 148, 201, 0.08);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--color-sky);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pointText {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0.15rem 0 0;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .imageWrap {
+    aspect-ratio: 16 / 10;
+  }
+
+  .heading {
+    max-width: none;
+  }
+}

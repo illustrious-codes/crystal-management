@@ -1,0 +1,241 @@
+/*
+  Crystal Management S.A. — Navbar
+  Light, corporate-blue treatment: a paper-white bar keeps both facets
+  of the crystal mark (bright cyan + deep navy) visible at a glance,
+  with navy carrying the text and sky blue reserved for accents.
+*/
+
+.navbar {
+  --color-navy: #0b3556;
+  --color-navy-soft: #4a6b87;
+  --color-sky: #1e94c9;
+  --color-sky-soft: #22a7e0;
+  --color-paper: #ffffff;
+  --color-paper-tint: #f6f9fb;
+  --color-line: rgba(11, 53, 86, 0.1);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-line);
+  transition: box-shadow 220ms ease, background 220ms ease;
+}
+
+.navbar.scrolled {
+  background: var(--color-paper);
+  box-shadow: 0 8px 24px -18px rgba(11, 53, 86, 0.35);
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* ---------- Brand ---------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoMark {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brandName {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--color-navy);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.brandSuffix {
+  color: var(--color-sky);
+}
+
+/* ---------- Desktop nav ---------- */
+
+.desktopNav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  position: relative;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-navy-soft);
+  text-decoration: none;
+  padding: 0.35rem 0.05rem;
+  transition: color 180ms ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-sky);
+  transition: right 220ms ease;
+}
+
+.navLink:hover {
+  color: var(--color-navy);
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  right: 0;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-sky-soft);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ---------- Mobile toggle ---------- */
+
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menuToggle:focus-visible {
+  outline: 2px solid var(--color-sky-soft);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.bar {
+  width: 24px;
+  height: 2px;
+  background: var(--color-navy);
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
+.menuToggleOpen .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuToggleOpen .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleOpen .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile nav panel ---------- */
+
+.mobileNav {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  background: var(--color-paper-tint);
+  transition: max-height 260ms ease;
+}
+
+.mobileNavOpen {
+  max-height: 400px;
+}
+
+.mobileNavList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavLink {
+  display: block;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--color-navy-soft);
+  text-decoration: none;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.mobileNavList li:last-child .mobileNavLink {
+  border-bottom: none;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink:focus-visible {
+  color: var(--color-sky);
+}
+
+/* ---------- Breakpoint ---------- */
+
+@media (max-width: 860px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+
+  .mobileNav {
+    display: block;
+  }
+
+  .brandName {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .brandName {
+    font-size: 1.1rem;
+  }
+
+  .logoMark {
+    height: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .bar,
+  .navLink::after,
+  .mobileNav {
+    transition: none;
+  }
+}

@@ -1,0 +1,183 @@
+/*
+  Crystal Management S.A. — Contact page
+  Left column: services, address, switchboard/fax, key contact.
+  Right column: the working contact form (ContactForm.jsx).
+*/
+
+.contact {
+  --color-navy: #0b3556;
+  --color-sky: #1e94c9;
+  --color-sky-soft: #22a7e0;
+  --color-text-secondary: #4a6b87;
+  --color-line: rgba(11, 53, 86, 0.1);
+
+  background: #ffffff;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  max-width: 40rem;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+
+.heading {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  color: var(--color-navy);
+  margin: 0 0 1.25rem;
+}
+
+.intro {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin: 0 0 0.85rem;
+}
+
+.serviceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.serviceItem {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--color-sky);
+  background: rgba(30, 148, 201, 0.08);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+/* ---------- Grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 3.5rem;
+}
+
+/* ---------- Info column ---------- */
+
+.infoBlock {
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.infoBlock:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.infoHeading {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--color-navy);
+  margin: 0 0 0.6rem;
+}
+
+.infoSubheading {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-sky);
+  margin: 0 0 0.75rem;
+}
+
+.address {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.contactName {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin: 0 0 0.75rem;
+}
+
+.contactList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.contactLabel {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.78rem;
+  color: var(--color-sky);
+  min-width: 5.5rem;
+  flex-shrink: 0;
+}
+
+.contactLink {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  color: var(--color-navy);
+}
+
+/* ---------- Form wrap ---------- */
+
+.formWrap {
+  background: #f6f9fb;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: 2.25rem;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .inner {
+    padding: 4rem 1.5rem 4.5rem;
+  }
+
+  .formWrap {
+    padding: 1.75rem;
+  }
+}

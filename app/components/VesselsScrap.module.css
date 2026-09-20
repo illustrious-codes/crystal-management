@@ -1,0 +1,73 @@
+/*
+  Crystal Management S.A. — Vessels Sold as Scrap
+  A two-photo gallery of a single demolition sale rather than a card
+  grid, since both photos are of the same vessel at the same yard.
+*/
+
+.vesselsScrap {
+  --color-navy: #0b3556;
+  --color-text-secondary: #4a6b87;
+
+  background: #ffffff;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  max-width: 42rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.heading {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  color: var(--color-navy);
+  margin: 0 0 1rem;
+}
+
+.intro {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.photoWrap {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 720px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .inner {
+    padding: 4rem 1.5rem 4.5rem;
+  }
+}

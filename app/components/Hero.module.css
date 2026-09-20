@@ -1,0 +1,163 @@
+/*
+  Crystal Management S.A. — Hero / banner
+  Full-bleed photo of the chartered tanker with a navy gradient overlay
+  for legibility; content is centered rather than split two-column.
+*/
+
+.hero {
+  --color-navy: #0b3556;
+  --color-navy-deep: #082943;
+  --color-sky-soft: #6fc4ea;
+  --color-paper: #fbfdff;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-paper);
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    160deg,
+    rgba(11, 53, 86, 0.92) 0%,
+    rgba(8, 41, 67, 0.88) 55%,
+    rgba(8, 41, 67, 0.82) 100%
+  );
+}
+
+.inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---------- Copy ---------- */
+
+.headline {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 500;
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  margin: 0 0 1.25rem;
+  color: var(--color-paper);
+}
+
+.subhead {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(251, 253, 255, 0.82);
+  margin: 0 0 2.25rem;
+  max-width: 42ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.primaryButton {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-navy-deep);
+  background: var(--color-paper);
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 4px;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.primaryButton:hover {
+  background: var(--color-sky-soft);
+  transform: translateY(-1px);
+}
+
+.primaryButton:focus-visible {
+  outline: 2px solid var(--color-sky-soft);
+  outline-offset: 3px;
+}
+
+.secondaryButton {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-paper);
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(251, 253, 255, 0.45);
+  border-radius: 4px;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-paper);
+  background: rgba(251, 253, 255, 0.1);
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--color-sky-soft);
+  outline-offset: 3px;
+}
+
+.meta {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  color: rgba(251, 253, 255, 0.65);
+  margin: 0;
+}
+
+/* ---------- Breakpoints ---------- */
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .inner {
+    padding: 4.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+}
