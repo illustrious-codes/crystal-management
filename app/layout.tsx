@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Crystal Management S.A.",
     images: [
       {
-        url: "https://crystal-managementsacom.netlify.app/images/meta.jpg",
+        url: "https://crystal-managementsacom.netlify.app/images/vessels/vv1.jpg",
         width: 1200,
         height: 630,
       },
@@ -49,7 +49,9 @@ export const metadata: Metadata = {
     title: "Crystal Management S.A. | Tanker Chartering & Ship Broking",
     description:
       "Led by Thanos Theocharis with 25+ years of tanker market experience: spot and period chartering, ship sale and purchase, demolition and ship management.",
-    images: ["https://crystal-managementsacom.netlify.app/images/meta.jpg"],
+    images: [
+      "https://crystal-managementsacom.netlify.app/images/vessels/vv1.jpg",
+    ],
   },
 };
 
