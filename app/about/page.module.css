@@ -1,0 +1,187 @@
+/* Crystal Management S.A. — About Us */
+
+.page {
+  --cm-navy: #0a1e3c;
+  --cm-blue: #0e5aa7;
+  --cm-blue-bright: #2b8de0;
+  --cm-ice: #eaf1f8;
+  --cm-line: rgba(10, 30, 60, 0.12);
+  --cm-ink-soft: #5a6b80;
+
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 64px 0 40px;
+  background: linear-gradient(180deg, var(--cm-ice) 0%, #ffffff 100%);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cm-blue-bright);
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--cm-navy);
+  line-height: 1.15;
+}
+
+/* ---------- Banner images ---------- */
+
+.banner,
+.bannerSecondary {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 0 8px;
+}
+
+.bannerSecondary {
+  aspect-ratio: 21 / 9;
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+/* ---------- Story ---------- */
+
+.story {
+  padding: 48px 0 56px;
+}
+
+.storyText {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.storyText p {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--cm-ink-soft);
+}
+
+.storyText p:last-child {
+  color: var(--cm-navy);
+  font-weight: 600;
+}
+
+/* ---------- Team ---------- */
+
+.team {
+  padding: 56px 0 80px;
+  background: var(--cm-ice);
+  border-top: 1px solid var(--cm-line);
+}
+
+.teamHeading {
+  margin: 0 0 40px;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--cm-navy);
+}
+
+.teamGrid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--cm-line);
+  border-radius: 10px;
+  padding: 26px 24px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--cm-blue);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.name {
+  margin: 0 0 4px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--cm-navy);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cm-blue);
+  line-height: 1.4;
+}
+
+.bio {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--cm-line);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--cm-ink-soft);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 980px) {
+  .teamGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 48px 0 32px;
+  }
+  .story {
+    padding: 36px 0 44px;
+  }
+  .team {
+    padding: 40px 0 56px;
+  }
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+  .banner,
+  .bannerSecondary {
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+  }
+}

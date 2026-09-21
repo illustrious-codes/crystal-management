@@ -1,0 +1,106 @@
+.gallery {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0a1420;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 0s linear 1s;
+  z-index: 1;
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease;
+  z-index: 2;
+}
+
+.slideImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- Arrows ---------- */
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 20, 32, 0.4);
+  color: #f3f8f7;
+  border: 1px solid rgba(243, 248, 247, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.navButton:hover {
+  background: rgba(14, 90, 167, 0.85);
+  border-color: #2b8de0;
+}
+
+.navButton:focus-visible {
+  outline: 3px solid #f3f8f7;
+  outline-offset: 2px;
+}
+
+.navPrev {
+  left: 5vw;
+}
+
+.navNext {
+  right: 5vw;
+}
+
+/* ---------- Counter ---------- */
+
+.counter {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(10, 20, 32, 0.45);
+  color: #f3f8f7;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(3px);
+}
+
+@media (max-width: 640px) {
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+  .navPrev {
+    left: 3vw;
+  }
+  .navNext {
+    right: 3vw;
+  }
+  .counter {
+    bottom: 3.5vh;
+  }
+}

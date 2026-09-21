@@ -1,11 +1,22 @@
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function escapeHtml(str = "") {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Strips newlines so user input can't be used to inject extra mail headers.
+function sanitizeHeaderValue(str = "") {
+  return str.replace(/[\r\n]+/g, " ").trim();
+}
 
 export async function POST(request) {
   let body;
-
   try {
     body = await request.json();
   } catch {
@@ -15,71 +26,47 @@ export async function POST(request) {
     );
   }
 
-  const firstName = (body.firstName || "").trim();
-  const lastName = (body.lastName || "").trim();
-  const subject = (body.subject || "").trim();
-  const email = (body.email || "").trim();
+  const firstName = sanitizeHeaderValue(body.firstName || "");
+  const lastName = sanitizeHeaderValue(body.lastName || "");
+  const phone = sanitizeHeaderValue(body.phone || "");
+  const email = sanitizeHeaderValue(body.email || "");
   const message = (body.message || "").trim();
 
-  if (!firstName || !lastName || !email || !message) {
+  if (!firstName || !lastName || !phone || !email || !message) {
     return NextResponse.json(
-      { error: "Please fill in all required fields." },
+      { error: "All fields are required." },
       { status: 400 }
     );
   }
 
-  if (!EMAIL_PATTERN.test(email)) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
     return NextResponse.json(
-      { error: "Please enter a valid email address." },
+      { error: "Please provide a valid email address." },
       { status: 400 }
     );
   }
-
-  const {
-    SMTP_HOST,
-    SMTP_PORT,
-    SMTP_USER,
-    SMTP_PASS,
-    CONTACT_TO_EMAIL,
-    SMTP_FROM,
-  } = process.env;
-
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !CONTACT_TO_EMAIL) {
-    console.error(
-      "Contact form is missing SMTP configuration. Check .env.local."
-    );
-    return NextResponse.json(
-      {
-        error: "The contact form isn't configured yet. Please try again later.",
-      },
-      { status: 500 }
-    );
-  }
-
-  const port = Number(SMTP_PORT) || 587;
 
   try {
     const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port,
-      secure: port === 465,
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_SECURE === "true", // true for port 465, false for 587/25
       auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
     await transporter.sendMail({
-      from: `"Crystal Management Website" <${SMTP_FROM || SMTP_USER}>`,
-      to: CONTACT_TO_EMAIL,
+      from: `"${firstName} ${lastName} (Website)" <${process.env.SMTP_FROM}>`,
+      to: process.env.CONTACT_TO_EMAIL,
       replyTo: email,
-      subject: `[Website enquiry] ${
-        subject || `From ${firstName} ${lastName}`
-      }`,
+      subject: `New contact form message from ${firstName} ${lastName}`,
       text: [
         `Name: ${firstName} ${lastName}`,
+        `Phone: ${phone}`,
         `Email: ${email}`,
-        `Subject: ${subject || "N/A"}`,
         "",
         "Message:",
         message,
@@ -88,8 +75,8 @@ export async function POST(request) {
         <p><strong>Name:</strong> ${escapeHtml(firstName)} ${escapeHtml(
         lastName
       )}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Subject:</strong> ${escapeHtml(subject || "N/A")}</p>
         <p><strong>Message:</strong></p>
         <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
       `,
@@ -97,22 +84,13 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Failed to send contact form email:", error);
+    console.error("Contact form email error:", error);
     return NextResponse.json(
       {
         error:
-          "Something went wrong sending your message. Please try again later.",
+          "Something went wrong sending your message. Please try again shortly.",
       },
       { status: 500 }
     );
   }
-}
-
-function escapeHtml(value) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
