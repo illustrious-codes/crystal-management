@@ -22,7 +22,7 @@ export default function Hero() {
 
         <p className={styles.subhead}>
           Independent ship broking spanning tanker chartering, sale and
-          purchase, demolition and management — led by more than twenty-five
+          purchase, demolition and management, led by more than twenty-five
           years of experience in crude oil and petroleum product trades across
           the WAfrica, AG, East, UKC and Med-WAfr routes.
         </p>
