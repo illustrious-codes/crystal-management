@@ -44,16 +44,19 @@
 /* ---------- Gallery ---------- */
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
 }
 
 .photoWrap {
   position: relative;
+  width: 240px;
   aspect-ratio: 5 / 4;
   border-radius: 6px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .photo {
@@ -63,8 +66,9 @@
 /* ---------- Breakpoints ---------- */
 
 @media (max-width: 720px) {
-  .gallery {
-    grid-template-columns: 1fr;
+  .photoWrap {
+    width: 100%;
+    max-width: 320px;
   }
 
   .inner {

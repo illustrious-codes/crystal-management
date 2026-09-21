@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "./ContactSection.module.css";
 
 const EMAILS = [
+  "snp@crystalsa.com",
   "operation@crystalsa.com",
   "chartering@crystalsa.com",
   "info@crystalsa.com",

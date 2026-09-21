@@ -27,7 +27,7 @@ export default function VesselsScrap() {
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="(max-width: 800px) 100vw, 50vw"
+                sizes="(max-width: 720px) 100vw, 240px"
                 className={styles.photo}
               />
             </div>
