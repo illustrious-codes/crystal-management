@@ -166,7 +166,7 @@ export default function ContactPage() {
 
               {status === "sent" && (
                 <p className={styles.formStatus} role="status">
-                  Thanks — your message has been sent. We&rsquo;ll be in touch
+                  Thanks, your message has been sent. We&rsquo;ll be in touch
                   shortly.
                 </p>
               )}
